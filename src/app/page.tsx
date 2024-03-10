@@ -51,17 +51,20 @@ export default function Home() {
   
   
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
     <form className='flex'>
         <input className='shadow-inner rounded-l p-2 flex-1' id='wallet' aria-label='wallet address' placeholder='Enter the wallet address' value={input} onChange={e => setInput(e.target.value)}/>
         <button className='bg-blue-600 hover:bg-blue-700 duration-300 text-white shadow p-2 rounded-r' type='submit' onClick={(event) => showWalletBalance(event as any, input)}>
           Check Amount
         </button>
-      </form>
+    </form>
       { loading && <div>Loading...</div>}
-      {walletBalance && (<li className='text-2xl'>Confirmed Balance: {walletBalance.confirmedBalance} satoshis</li>)}
-      {walletBalance && (<li className='text-2xl'>Unconfirmed Balance: {walletBalance.unconfirmedBalance} satoshis</li>)}
-      {walletBalance && (<li className='text-2xl'>Total Balance: {walletBalance.totalBalance} satoshis</li>)}
+      {walletBalance && 
+      (<div className="justify-end pt-10">
+        <li className='list-disc'>Confirmed Balance: {walletBalance.confirmedBalance} BTC</li> 
+        <li className='list-disc'>Unconfirmed Balance: {walletBalance.unconfirmedBalance} BTC</li> 
+        <li className='list-disc'>Total Balance: {walletBalance.totalBalance} BTC</li> 
+      </div>)}
     </main>
   );
 }
